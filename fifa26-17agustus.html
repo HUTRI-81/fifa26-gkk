@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA 26 Friendly Cup – 17 Agustus 2026 | GKK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    :root {
+      --red: #CC0001;
+      --red-dark: #990000;
+      --gold: #F5C518;
+      --white: #FFFFFF;
+      --off-white: #F7F7F5;
+      --dark: #111111;
+      --mid: #333333;
+      --light: #888888;
+      --border: #E0E0E0;
+      --green: #1A7A3C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 48px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 30px,
+        rgba(255,255,255,0.015) 30px,
+        rgba(255,255,255,0.015) 60px
+      );
+    }
+    .flag-stripe {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .flag-stripe span {
+      width: 36px; height: 8px; border-radius: 2px;
+    }
+    .flag-stripe .r { background: var(--red); }
+    .flag-stripe .w { background: var(--white); }
+
+    .hero-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -1px;
+      position: relative;
+    }
+    .hero h1 .red { color: var(--red); }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    .hero-meta {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .hero-meta span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-meta span strong { color: white; }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 14px 8px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    .tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+    .tab-btn:hover:not(.active) { color: white; }
+
+    /* MAIN */
+    .main { max-width: 720px; margin: 0 auto; padding: 32px 16px 60px; }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ATURAN */
+    .rule-group { margin-bottom: 32px; }
+    .rule-group-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--red);
+    }
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .rule-item:last-child { border-bottom: none; }
+    .rule-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--border);
+      min-width: 32px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .rule-text { font-size: 14px; line-height: 1.6; color: var(--mid); }
+    .rule-text strong { color: var(--dark); }
+
+    .highlight-box {
+      background: var(--dark);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+    .highlight-box .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .highlight-box p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .highlight-box .bracket-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .bracket-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+    .bracket-card .phase { color: var(--gold); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+    /* FORM */
+    .form-section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .form-section-sub { font-size: 13px; color: var(--light); margin-bottom: 24px; }
+
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+    .field input, .field select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background: white;
+      color: var(--dark);
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .field input:focus, .field select:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+    .field .hint { font-size: 11px; color: var(--light); margin-top: 5px; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--red-dark); }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* PESERTA */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      border: 1.5px solid var(--border);
+    }
+    .stat-card .num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-card .num.red { color: var(--red); }
+    .stat-card .num.gold { color: #C8860A; }
+    .stat-card .num.green { color: var(--green); }
+    .stat-card .lbl { font-size: 11px; color: var(--light); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .peserta-list { display: flex; flex-direction: column; gap: 8px; }
+    .peserta-card {
+      background: white;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1.5px solid var(--border);
+    }
+    .peserta-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--border);
+      min-width: 28px;
+    }
+    .peserta-info { flex: 1; }
+    .peserta-name { font-weight: 600; font-size: 14px; }
+    .peserta-detail { font-size: 12px; color: var(--light); margin-top: 2px; }
+    .peserta-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--light);
+    }
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; }
+
+    /* SUCCESS */
+    .success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .success-overlay.show { display: flex; }
+    .success-box {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      max-width: 360px;
+      width: 100%;
+    }
+    .success-icon { font-size: 56px; margin-bottom: 16px; }
+    .success-box h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .success-box p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+    .success-box .reg-code {
+      margin: 20px 0;
+      background: var(--off-white);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .success-box .reg-code .code-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 6px; }
+    .success-box .reg-code .code {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 2px;
+    }
+    .btn-close-success {
+      width: 100%;
+      padding: 14px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    /* ADMIN */
+    .admin-note {
+      background: #FFF8E1;
+      border: 1.5px solid #F5C518;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #92400E;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .btn-export {
+      padding: 10px 18px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .btn-clear {
+      padding: 10px 18px;
+      background: white;
+      color: var(--red);
+      border: 1.5px solid var(--red);
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      margin-left: 8px;
+    }
+
+    .btn-delete-selected {
+      padding: 10px 18px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .row-checkbox {
+      width: 18px; height: 18px;
+      cursor: pointer;
+      accent-color: var(--red);
+    }
+    .peserta-row.selected-row {
+      background: #fff0f0 !important;
+    }
+    .select-all-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--mid);
+      cursor: pointer;
+    }
+
+
+      .bracket-card { font-size: 12px; }
+      .stats-bar { grid-template-columns: repeat(3, 1fr); }
+      .stat-card .num { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="flag-stripe">
+    <span class="r"></span><span class="r"></span><span class="r"></span>
+    <span class="w"></span><span class="w"></span><span class="w"></span>
+    <span class="r"></span><span class="r"></span><span class="r"></span>
+  </div>
+  <div class="hero-badge">🎮 17 Agustus 2026</div>
+  <h1><span class="red">FIFA</span> <span class="gold">26</span></h1>
+  <div class="hero-sub">FRIENDLY CUP · HUT RI KE-81</div>
+  <div class="hero-meta">
+    <span>📍 <strong>Gereja Kristen Kebenaran</strong></span>
+    <span>📅 <strong>17 Agustus 2026</strong></span>
+    <span>🎮 <strong>PS4 Pro</strong></span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('aturan')">📋 Aturan</button>
+  <button class="tab-btn" onclick="switchTab('daftar')">✍️ Daftar</button>
+  <button class="tab-btn" onclick="switchTab('admin')">⚙️ Admin</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- TAB: ATURAN -->
+  <div id="tab-aturan" class="section active">
+
+
+    <div class="rule-group">
+      <div class="rule-group-title">🎮 Setting & Gameplay</div>
+      <div class="rule-item">
+        <div class="rule-num">01</div>
+        <div class="rule-text"><strong>Platform:</strong> <strong>PS4 Pro</strong> — disediakan oleh panitia. Peserta tidak boleh membawa konsol sendiri.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">02</div>
+        <div class="rule-text"><strong>Mode permainan:</strong> <strong>Kick-Off — Player vs Player</strong>. Murni lawan sesama peserta, bukan lawan CPU/bot. Bukan Ultimate Team, Career Mode, atau mode online.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">03</div>
+        <div class="rule-text"><strong>Durasi pertandingan:</strong> <strong>6 menit per babak</strong> (total 12 menit). Fase final: 8 menit per babak.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">04</div>
+        <div class="rule-text"><strong>Pilih tim:</strong> Setiap peserta bebas memilih tim manapun, termasuk <strong>tim yang sama</strong> — asalkan memakai <strong>jersey berbeda</strong> (Home vs Away / Third). Jika kedua pemain ingin jersey yang sama, duel suit — menang pilih duluan.<br/><br/>
+          <strong>⚠️ Tim yang dilarang:</strong> Tim all-star, legend, atau exhibition tidak boleh dipakai — contohnya Soccer Aid World XI, Adidas All Star, Chelsea Legends, dan sejenisnya. Hanya tim klub atau timnas resmi yang diperbolehkan.
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">05</div>
+        <div class="rule-text"><strong>Kesulitan:</strong> <strong>Professional</strong> untuk semua babak. Semi-Final & Final boleh naik ke World Class jika kedua pemain setuju.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">06</div>
+        <div class="rule-text"><strong>Kamera:</strong> <strong>Tele Broadcast</strong> — wajib untuk semua pertandingan. Tidak boleh diganti ke kamera lain setelah kick-off dimulai.</div>
+      </div>
+    </div>
+
+    <div class="rule-group">
+      <div class="rule-group-title">⚡ Aturan Pertandingan</div>
+      <div class="rule-item">
+        <div class="rule-num">07</div>
+        <div class="rule-text">
+          <strong>Sistem hasil pertandingan:</strong><br/>
+          • <strong>Babak Grup</strong> — Menang: 3 poin · Seri: 1 poin · Kalah: 0 poin. Hasil imbang <strong>tidak dilanjutkan ke penalti</strong>, cukup 1 poin masing-masing.<br/>
+          • <strong>Babak Knockout</strong> — Jika imbang setelah waktu normal → lanjut <strong>Extra Time</strong>. Jika masih imbang setelah Extra Time → <strong>Adu Penalti</strong> (5 tendangan per tim, sudden death jika masih sama).
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">07a</div>
+        <div class="rule-text">
+          <strong>Tiebreaker Fase Grup</strong> — Jika ada peserta dengan poin yang sama, urutan kelolosan ditentukan secara berurutan:<br/>
+          1. <strong>Poin</strong> — poin total lebih tinggi lolos duluan.<br/>
+          2. <strong>Head to Head</strong> — hasil pertemuan langsung antar peserta yang seri poin.<br/>
+          3. <strong>Selisih Gol</strong> — selisih antara gol masuk dan gol kemasukan.<br/>
+          4. <strong>Gol Terbanyak</strong> — total gol yang dicetak sepanjang fase grup.<br/>
+          5. <strong>Rematch 1x</strong> — jika semua kriteria di atas masih sama, dilakukan 1 pertandingan ulang untuk menentukan siapa yang lolos.
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">08</div>
+        <div class="rule-text">
+          <strong>Pause darurat</strong> hanya diizinkan untuk 3 kondisi berikut:<br/>
+          a. <strong>Perubahan taktik</strong> — diberikan waktu maksimal <strong>5 menit</strong>, lalu lanjut.<br/>
+          b. <strong>Ke toilet</strong> — segera lanjut setelah kembali.<br/>
+          c. <strong>Kebutuhan urgent</strong> (contoh: telepon dari keluarga atau kantor) — panitia menentukan kelayakan dan durasi.<br/><br/>
+          Pause di luar 3 kondisi di atas tidak diizinkan. Pause saat bola masuk gawang = tidak sah, gol tetap dihitung.
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">09</div>
+        <div class="rule-text"><strong>Taktik & skill move:</strong> Bebas, tidak ada batasan. Ini turnamen serius — main terbaik kalian.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">10</div>
+        <div class="rule-text"><strong>Disconnect / crash:</strong> Jika game crash sebelum babak ke-2 selesai lebih dari 50%, match <strong>diulang dari awal</strong>. Jika crash di atas 50% babak ke-2, skor saat crash yang berlaku.</div>
+      </div>
+    </div>
+
+    <div class="rule-group">
+      <div class="rule-group-title">🤝 Etika & Kedisiplinan</div>
+      <div class="rule-item">
+        <div class="rule-num">11</div>
+        <div class="rule-text"><strong>Hadir tepat waktu:</strong> Keterlambatan lebih dari <strong>10 menit</strong> dari jadwal → otomatis <strong>Walkover (WO)</strong>. Peserta yang tidak hadir dinyatakan <strong>kalah 3–0</strong>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">12</div>
+        <div class="rule-text"><strong>Trash talk & sportivitas:</strong> Ngobrol dan jokes ringan boleh. Tapi kata-kata kasar, bullying, atau intimidasi → <strong>langsung diskualifikasi</strong>.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">13</div>
+        <div class="rule-text"><strong>Keputusan panitia adalah final.</strong> Protes disampaikan secara sopan, bukan dengan emosi. Panitia akan mendengar dan memutuskan dalam 5 menit.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">14</div>
+        <div class="rule-text"><strong>Handshake wajib</strong> sebelum dan sesudah pertandingan. Ini acara gereja — menjaga semangat kebersamaan lebih penting dari menang.</div>
+      </div>
+    </div>
+
+    <div class="rule-group">
+      <div class="rule-group-title">📅 Jadwal & Pendaftaran</div>
+      <div class="rule-item">
+        <div class="rule-num">15</div>
+        <div class="rule-text"><strong>Pendaftaran ditutup:</strong> <strong>2 Agustus 2026</strong>. Setelah itu tidak ada penambahan peserta kecuali keputusan khusus panitia.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">16</div>
+        <div class="rule-text"><strong>Pengundian bracket:</strong> Diumumkan <strong>9 Agustus 2026</strong> via grup WhatsApp / pengumuman gereja.</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">17</div>
+        <div class="rule-text"><strong>Biaya pendaftaran:</strong> Gratis. Hadiah dari sponsor dan panitia acara.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TAB: DAFTAR -->
+  <div id="tab-daftar" class="section">
+    <div class="form-section-title">Formulir Pendaftaran</div>
+    <div class="form-section-sub">Isi semua data dengan benar ya. Pendaftaran hanya bisa dilakukan sekali per nomor WA.</div>
+
+    <div class="field">
+      <label>Nama Lengkap *</label>
+      <input type="text" id="inp-nama" placeholder="Nama kamu" />
+    </div>
+
+    <div class="field">
+      <label>Nomor WhatsApp *</label>
+      <input type="tel" id="inp-wa" placeholder="08xxxxxxxxxx" />
+      <div class="hint">Untuk info jadwal & bracket pertandingan</div>
+    </div>
+
+    <div class="field">
+      <label>Hubunganmu dengan GKK *</label>
+      <select id="inp-gereja">
+        <option value="">-- Pilih salah satu --</option>
+        <option value="Jemaat Tetap">Saya jemaat tetap GKK</option>
+        <option value="Pernah ke GKK">Saya pernah hadir / berkunjung ke GKK</option>
+        <option value="Belum Pernah ke GKK">Saya belum pernah ke GKK</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Kamu tahu info ini dari mana? *</label>
+      <select id="inp-sumber" onchange="toggleKenalan()">
+        <option value="">-- Pilih salah satu --</option>
+        <option value="Grup Gereja">Grup gereja (WhatsApp / media sosial GKK)</option>
+        <option value="Kenalan">Info dari kenalan / teman</option>
+      </select>
+    </div>
+
+    <div class="field" id="field-kenalan" style="display:none;">
+      <label>Siapa yang ngasih tau kamu? *</label>
+      <input type="text" id="inp-kenalan" placeholder="Nama teman / kenalanmu" />
+    </div>
+
+    <button class="btn-submit" onclick="submitForm()">⚽ DAFTAR SEKARANG</button>
+  </div>
+
+  <!-- TAB: ADMIN -->
+  <div id="tab-admin" class="section">
+    <div class="admin-note">
+      ⚠️ <strong>Area Panitia.</strong> Tab ini untuk rekap & kelola data peserta. Export CSV berkala supaya data aman.
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+      <button class="btn-export" onclick="exportCSV()">⬇️ Export CSV</button>
+      <button class="btn-delete-selected" id="btn-del-selected" onclick="deleteSelected()" style="display:none;">🗑️ Hapus yang Dipilih (<span id="selected-count">0</span>)</button>
+      <button class="btn-clear" onclick="clearData()">❌ Hapus Semua</button>
+    </div>
+
+    <div id="admin-table-wrap"></div>
+  </div>
+
+</div>
+
+<!-- ADMIN LOGIN OVERLAY -->
+<div class="success-overlay" id="admin-login-overlay">
+  <div class="success-box">
+    <div class="success-icon">🔐</div>
+    <h2>Area Panitia</h2>
+    <p style="margin-bottom:20px;">Masukkan password untuk akses tab Admin.</p>
+    <div style="position:relative;margin-bottom:8px;">
+      <input
+        type="password"
+        id="admin-pass-input"
+        placeholder="Password"
+        onkeydown="if(event.key==='Enter') submitAdminLogin()"
+        style="width:100%;padding:12px 14px;border:1.5px solid #E0E0E0;border-radius:8px;font-size:16px;font-family:'Inter',sans-serif;text-align:center;letter-spacing:3px;"
+      />
+    </div>
+    <p id="admin-pass-error" style="display:none;color:#CC0001;font-size:12px;margin-bottom:12px;">Password salah, coba lagi.</p>
+    <button class="btn-close-success" onclick="submitAdminLogin()" style="margin-bottom:10px;">Masuk</button>
+    <button onclick="closeAdminLogin()" style="width:100%;padding:12px;background:none;border:none;color:#888;font-size:13px;cursor:pointer;">Batal</button>
+  </div>
+</div>
+
+
+<div class="success-overlay" id="success-overlay">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2>Pendaftaran Berhasil!</h2>
+    <p>Kamu sudah masuk daftar peserta <strong>FIFA 26 Friendly Cup</strong>.<br/><br/>Info jadwal & bracket akan disampaikan via WhatsApp menjelang hari-H. Sampai ketemu tanggal 17 Agustus! 🇮🇩</p>
+    <br/>
+    <button class="btn-close-success" onclick="closeSuccess()">Siap! Tutup</button>
+  </div>
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa5a-eOCO04F0QtlXBj1l2nOn-S1ODqKfqz6l4EVg3aWNXvlpk-tis7V-bR0y89O3Z2g/exec';
+  const STORAGE_KEY = 'fifa26_peserta';
+
+  // localStorage untuk cek duplikat WA secara lokal
+  function getPeserta() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+  function savePeserta(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  // --- ADMIN PASSWORD ---
+  const ADMIN_PASS = 'gkk2026';
+  let adminUnlocked = false;
+
+  // --- TAB SWITCHING ---
+  function switchTab(id) {
+    if (id === 'admin' && !adminUnlocked) { showAdminLogin(); return; }
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', ['aturan','daftar','admin'][i] === id);
+    });
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    if (id === 'admin') renderAdmin();
+  }
+
+  function showAdminLogin() {
+    document.getElementById('admin-login-overlay').classList.add('show');
+    setTimeout(() => document.getElementById('admin-pass-input').focus(), 100);
+  }
+
+  function submitAdminLogin() {
+    const val = document.getElementById('admin-pass-input').value;
+    if (val === ADMIN_PASS) {
+      adminUnlocked = true;
+      document.getElementById('admin-login-overlay').classList.remove('show');
+      document.getElementById('admin-pass-input').value = '';
+      document.getElementById('admin-pass-error').style.display = 'none';
+      switchTab('admin');
+    } else {
+      document.getElementById('admin-pass-error').style.display = 'block';
+      document.getElementById('admin-pass-input').value = '';
+      document.getElementById('admin-pass-input').focus();
+    }
+  }
+
+  function closeAdminLogin() {
+    document.getElementById('admin-login-overlay').classList.remove('show');
+    document.getElementById('admin-pass-input').value = '';
+    document.getElementById('admin-pass-error').style.display = 'none';
+  }
+
+  // --- SHOW/HIDE kenalan field ---
+  function toggleKenalan() {
+    const sumber = document.getElementById('inp-sumber').value;
+    const field = document.getElementById('field-kenalan');
+    field.style.display = sumber === 'Kenalan' ? 'block' : 'none';
+    if (sumber !== 'Kenalan') document.getElementById('inp-kenalan').value = '';
+  }
+
+  // --- FORM SUBMIT ke Google Sheets ---
+  async function submitForm() {
+    const nama    = document.getElementById('inp-nama').value.trim();
+    const wa      = document.getElementById('inp-wa').value.trim();
+    const gereja  = document.getElementById('inp-gereja').value;
+    const sumber  = document.getElementById('inp-sumber').value;
+    const kenalan = document.getElementById('inp-kenalan').value.trim();
+
+    if (!nama) { alert('Nama wajib diisi!'); return; }
+    if (nama.trim().split(/\s+/).length < 2) {
+      if (!confirm('Nama kamu cuma satu kata nih — "' + nama + '". Udah bener?')) return;
+    }
+    if (!wa || !/^0\d{8,12}$/.test(wa)) { alert('Nomor WhatsApp tidak valid. Mulai dengan 08...'); return; }
+    if (!gereja) { alert('Pilih hubunganmu dengan GKK dulu ya!'); return; }
+    if (!sumber) { alert('Pilih dari mana kamu tahu info ini!'); return; }
+    if (sumber === 'Kenalan' && !kenalan) { alert('Tulis nama kenalan yang ngasih tau kamu!'); return; }
+
+    const lokalData = getPeserta();
+    if (lokalData.find(p => p.wa === wa)) { alert('Nomor WhatsApp ini sudah terdaftar!'); return; }
+
+    const sumberFinal = sumber === 'Kenalan' ? 'Kenalan (' + kenalan + ')' : sumber;
+    const waktu = new Date().toLocaleString('id-ID', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    const btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Mendaftarkan...';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nama, wa, gereja, sumber: sumberFinal, waktu })
+      });
+
+      lokalData.push({ wa, nama });
+      savePeserta(lokalData);
+
+      document.getElementById('inp-nama').value = '';
+      document.getElementById('inp-wa').value = '';
+      document.getElementById('inp-gereja').value = '';
+      document.getElementById('inp-sumber').value = '';
+      document.getElementById('inp-kenalan').value = '';
+      document.getElementById('field-kenalan').style.display = 'none';
+
+      document.getElementById('success-overlay').classList.add('show');
+    } catch (err) {
+      alert('Gagal mendaftar, coba lagi ya.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '⚽ DAFTAR SEKARANG';
+    }
+  }
+
+  function closeSuccess() {
+    document.getElementById('success-overlay').classList.remove('show');
+    switchTab('aturan');
+  }
+
+  // --- ADMIN: Tarik data dari Google Sheets ---
+  async function renderAdmin() {
+    const wrap = document.getElementById('admin-table-wrap');
+    wrap.innerHTML = '<p style="color:#888;font-size:14px;">⏳ Memuat data dari server...</p>';
+    document.getElementById('btn-del-selected').style.display = 'none';
+
+    try {
+      const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
+      const json = await res.json();
+      const rows = json.data || [];
+      const data = rows.filter((r, i) => i > 0 && r[1]);
+
+      if (data.length === 0) {
+        wrap.innerHTML = '<p style="color:#888;font-size:14px;">Belum ada data peserta.</p>';
+        return;
+      }
+
+      const tableRows = data.map((r, i) =>
+        '<tr class="peserta-row" id="row-' + i + '">' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;text-align:center;">' +
+            '<input type="checkbox" class="row-checkbox" data-index="' + i + '" onchange="updateSelectedUI()"/>' +
+          '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;">' + (r[0]||'') + '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;font-weight:600;">' + (r[1]||'') + '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;">' + (r[2]||'') + '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;">' + (r[3]||'') + '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;">' + (r[4]||'') + '</td>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:11px;color:#888;">' + (r[5]||'') + '</td>' +
+        '</tr>'
+      ).join('');
+
+      wrap.innerHTML =
+        '<p style="font-size:13px;color:#555;margin-bottom:10px;">Total peserta: <strong>' + data.length + ' orang</strong></p>' +
+        '<label class="select-all-wrap"><input type="checkbox" id="chk-all" class="row-checkbox" onchange="toggleSelectAll(this)"/> Pilih semua</label>' +
+        '<div style="overflow-x:auto">' +
+        '<table style="width:100%;border-collapse:collapse;font-size:12px;">' +
+          '<thead><tr style="background:#111;color:white;text-align:left;">' +
+            '<th style="padding:8px 10px;width:36px;"></th>' +
+            '<th style="padding:8px 10px;">#</th>' +
+            '<th style="padding:8px 10px;">Nama</th>' +
+            '<th style="padding:8px 10px;">WhatsApp</th>' +
+            '<th style="padding:8px 10px;">Status GKK</th>' +
+            '<th style="padding:8px 10px;">Sumber Info</th>' +
+            '<th style="padding:8px 10px;">Waktu Daftar</th>' +
+          '</tr></thead>' +
+          '<tbody>' + tableRows + '</tbody>' +
+        '</table></div>';
+
+      updateSelectedUI();
+    } catch (err) {
+      wrap.innerHTML = '<p style="color:#CC0001;font-size:14px;">Gagal memuat data. Cek koneksi internet.</p>';
+    }
+  }
+
+  function toggleSelectAll(chk) {
+    document.querySelectorAll('.row-checkbox[data-index]').forEach(cb => {
+      cb.checked = chk.checked;
+      cb.closest('tr').classList.toggle('selected-row', chk.checked);
+    });
+    updateSelectedUI();
+  }
+
+  function updateSelectedUI() {
+    const checked = document.querySelectorAll('.row-checkbox[data-index]:checked');
+    const btn = document.getElementById('btn-del-selected');
+    const count = document.getElementById('selected-count');
+    document.querySelectorAll('.row-checkbox[data-index]').forEach(cb => {
+      cb.closest('tr').classList.toggle('selected-row', cb.checked);
+    });
+    if (checked.length > 0) {
+      btn.style.display = 'inline-block';
+      count.textContent = checked.length;
+    } else {
+      btn.style.display = 'none';
+    }
+    const all = document.querySelectorAll('.row-checkbox[data-index]');
+    const chkAll = document.getElementById('chk-all');
+    if (chkAll) {
+      chkAll.checked = all.length > 0 && checked.length === all.length;
+      chkAll.indeterminate = checked.length > 0 && checked.length < all.length;
+    }
+  }
+
+  function deleteSelected() {
+    alert('Untuk hapus data tertentu, hapus langsung di Google Sheets ya bro — biar data tetap aman dan tersinkron.');
+  }
+
+  function exportCSV() {
+    alert('Export langsung dari Google Sheets aja — File → Download → CSV.');
+  }
+
+  function clearData() {
+    alert('Untuk hapus semua data, hapus langsung di Google Sheets ya bro.');
+  }
+</script>
+
+</body>
+</html>
